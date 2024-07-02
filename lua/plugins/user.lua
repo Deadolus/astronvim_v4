@@ -1,85 +1,71 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
--- You can also add or configure plugins by creating files in this `plugins/` folder
--- Here are some examples:
-
----@type LazySpec
 return {
+  -- You can also add new plugins here as well:
+  -- Add plugins, the lazy syntax
+  -- "andweeb/presence.nvim",
+  {'ctrlpvim/ctrlp.vim', lazy=false },
+  { 'machakann/vim-highlightedyank', lazy=false },
+  { 'tpope/vim-dispatch', lazy=false },
+  {  'tpope/vim-surround', lazy=false },
+  {  'bkad/CamelCaseMotion', lazy=false },
+  --{  'terryma/vim-multiple-cursors', lazy=false },
+  { 'https://github.com/aitjcize/cppman', lazy=false },
+  { 'BurntSushi/ripgrep', lazy=false},
+  { 'vim-visual-multi', lazy=false},
+  --{  'kkoomen/vim-doge', { 'do': { -> doge#install() } }, lazy=false },
+  --{  'kkoomen/vim-doge', lazy=false },
+    { 'kkoomen/vim-doge', run = ':call doge#install()', lazy=false},
+  {  "ray-x/lsp_signature.nvim", lazy=false,
+  config = function()
+  require "lsp_signature".setup(cfg)
+    end },
 
-  -- == Examples of Adding Plugins ==
-
-  "andweeb/presence.nvim",
+  --{ 'easymotion/vim-easymotion', lazy = false, },
   {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function() require("lsp_signature").setup() end,
-  },
-
-  -- == Examples of Overriding Plugins ==
-
-  -- customize alpha options
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
-      }
-      return opts
-    end,
-  },
-
-  -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
-
-  -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
-  {
-    "L3MON4D3/LuaSnip",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom luasnip configuration such as filetype extend or custom snippets
-      local luasnip = require "luasnip"
-      luasnip.filetype_extend("javascript", { "javascriptreact" })
-    end,
-  },
-
-  {
-    "windwp/nvim-autopairs",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom autopairs configuration such as custom rules
-      local npairs = require "nvim-autopairs"
-      local Rule = require "nvim-autopairs.rule"
-      local cond = require "nvim-autopairs.conds"
-      npairs.add_rules(
-        {
-          Rule("$", "$", { "tex", "latex" })
-            -- don't add a pair if the next character is %
-            :with_pair(cond.not_after_regex "%%")
-            -- don't add a pair if  the previous character is xxx
-            :with_pair(
-              cond.not_before_regex("xxx", 3)
-            )
-            -- don't move right when repeat character
-            :with_move(cond.none())
-            -- don't delete if the next character is xx
-            :with_del(cond.not_after_regex "xx")
-            -- disable adding a newline when you press <cr>
-            :with_cr(cond.none()),
-        },
-        -- disable for .vim files, but it work for another filetypes
-        Rule("a", "a", "-vim")
-      )
-    end,
-  },
+  'phaazon/hop.nvim',
+  lazy=false,
+  --branch = 'v2', -- optional but strongly recommended
+  config = function()
+    -- you can configure Hop the way you like here; see :h hop-config
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+  end
 }
+--    {
+--      "ggandor/leap.nvim",
+--      lazy=false,
+--      config = function()
+--        require("leap").setup {
+--          max_phase_one_targets = nil,
+--          highlight_unlabeled_phase_one_targets = false,
+--          max_highlighted_traversal_targets = 10,
+--          case_sensitive = false,
+--          equivalence_classes = { ' \t\r\n', },
+--          substitute_chars = {},
+--          safe_labels = { 's', 'f', 'n', 'u', 't' },
+--          labels = { 's', 'f', 'n', 'j', 'k' },
+--          special_keys = {
+--            repeat_search = '<enter>',
+--            next_phase_one_target = '<enter>',
+--            next_target = { '<enter>', ';' },
+--            prev_target = { '<tab>', ',' },
+--            next_group = '<space>',
+--            prev_group = '<tab>',
+--            multi_accept = '<enter>',
+--            multi_revert = '<backspace>',
+--          }
+--        }
+--        require('leap').add_default_mappings()
+--      end,
+--    },
+--    {
+--    "ggandor/leap.nvim",
+--    lazy = false,
+--    config = function() require("leap").set_default_keymaps() end
+--    }
+    -- {
+      --   "ray-x/lsp_signature.nvim",
+      --   event = "BufRead",
+      --   config = function()
+        --     require("lsp_signature").setup()
+        --   end,
+        -- },
+      }
