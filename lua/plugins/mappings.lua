@@ -32,6 +32,7 @@ return {
           ['<leader>fb'] = { function() require('telescope.builtin').current_buffer_fuzzy_find() end, desc = 'Fuzzy find in current file'},
           ['<leader>fB'] = { function() require('telescope.builtin').buffers() end, desc = 'Find buffers'},
           ['<leader>fT'] = { function() require('telescope.builtin').tags() end, desc = 'Find tags'},
+          ['<leader>fl'] = { function() require('telescope.builtin').resume() end, desc = 'Resume last search'},
           ["gt"] = { function() vim.cmd.tabnext() end, desc = "Next tab" },
           ["gT"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" },
           ["<leader>tn"] = { "<cmd>tabnew<cr>", desc = "New Tab" },
